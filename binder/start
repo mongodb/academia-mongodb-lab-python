@@ -1,0 +1,10 @@
+#!/bin/bash
+set -eux
+
+export MONGODB_VERSION=$(cat .mongo_version)
+export MONGODB_PATH=${CONDA_DIR}/mongodb-$MONGODB_VERSION
+export PATH=${MONGODB_PATH}/bin:$PATH
+
+${MONGODB_PATH}/bin/mongod --dbpath ${MONGODB_PATH}/data/db &
+
+exec "$@"

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+MONGODB_VERSION=$(cat .mongo_version)
+MONGODB_PATH=${CONDA_DIR}/mongodb-$MONGODB_VERSION
+MONGODB_BASE=mongodb-linux-x86_64
+
+MONGO_DBPATH=${MONGODB_PATH}/data/db
+
+echo "Download mongodb installer..."
+#https://fastdl.mongodb.org/linux/${MONGODB_BASE}-4.0.16.tgz
+wget -q https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${MONGODB_VERSION}.tgz
+
+echo "Install mongodb..."
+tar -xvf ${MONGODB_BASE}-${MONGODB_VERSION}.tgz >/dev/null 
+rm ${MONGODB_BASE}-${MONGODB_VERSION}.tgz
+mv ${MONGODB_BASE}-${MONGODB_VERSION} ${MONGODB_PATH}
+
+mkdir -p $MONGO_DBPATH
+
+#Start the db and seed it
+echo "Start mongodb so we can see it..."
+${MONGODB_PATH}/bin/mongod --dbpath $MONGO_DBPATH &
+
+echo "Seed db..."
+DB_NAME=sample_mflix
+
+COLLECTION_NAME1=movies
+DATA_FILE1=data/movies.json
+
+COLLECTION_NAME2=comments
+DATA_FILE2=data/comments.json
+
+${MONGODB_PATH}/bin/mongoimport --db $DB_NAME --collection $COLLECTION_NAME1 --file $DATA_FILE1 --jsonArray
+${MONGODB_PATH}/bin/mongoimport --db $DB_NAME --collection $COLLECTION_NAME2 --file $DATA_FILE2 --jsonArray
+#We can also use mongorestore, eg with commands of the form:
+#${MONGODB_PATH}/bin/mongorestore --drop --db $DBNAME $DATA_FILE
+
+echo "Tidy up seed data..."
+rm data/movies.json
+rm data/comments.json 
+
+#Cleanly shutdown the mongo server
+${MONGODB_PATH}/bin/mongod --shutdown --dbpath $MONGO_DBPATH
+
+
+
