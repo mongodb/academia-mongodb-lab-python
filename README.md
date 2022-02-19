@@ -40,7 +40,7 @@ The maximum number of simultaneous users for a given Binder repo is 100. For thi
 <img width="1724" alt="Screen Shot 2022-01-03 at 9 08 07 PM" src="https://user-images.githubusercontent.com/45462803/148000464-52c58467-5c15-42fc-a79b-1e8a4108523d.png">
 
 ## Contribution
-Please create an [Issue](https://github.com/jchenj/mongodb_binder_test/issues) for any improvements, suggestions or errors in the content.
+Please create an [Issue](https://github.com/mongodb/academia-mongodb-lab-python/issues) for any improvements, suggestions or errors in the content.
 
 ## Acknowledgements
 This lab makes use of the following open-source projects:
