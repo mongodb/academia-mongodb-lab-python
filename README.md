@@ -23,7 +23,7 @@ The lab consists of five sections, with a total of 22 exercises:
 Each section is in a [Jupyter Notebook](https://jupyter.org/). The lab is designed to be completed interactively in the browser in cloud-hosted Jupyter Notebooks created with [Binder](https://mybinder.org/). 
 
 ## Maximum concurrent users
-The maximum number of simultaneous users for a given Binder repo is 100. For this reason, please avoid using this lab with Binder for large classes. If you have need for more concurrent users, consider runnnig the lab locally by cloning the repo and running on a local Jupyter server.
+The maximum number of simultaneous users for a given Binder repo is 100. For this reason, please avoid using this lab with Binder for large classes. If you have need for more concurrent users, consider running the lab locally by cloning the repo and running on a local Jupyter server.
 
 ## Usage
 1. Click the 'Launch Binder' button to load the lab. 
